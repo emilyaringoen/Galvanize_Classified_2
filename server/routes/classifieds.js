@@ -8,7 +8,7 @@ const knex = require('../knex')
 
 router.get('/', (req, res, next) => {
   knex('classifieds')
-    .select('id', 'title', 'description', 'price', 'item_image')
+    .select('id', 'title', 'description', 'price', 'item_image', 'created_at')
     .then((items) => {
       res.send(items)
     })
@@ -41,7 +41,7 @@ router.post('/', (req, res, next) => {
 router.patch('/:id', (req, res, next) => {
   let id = Number.parseInt(req.params.id)
   let updated = req.body
-
+  console.log('here')
   knex('classifieds')
     .where('id', id)
     .returning(['id', 'title', 'description', 'price', 'item_image'])

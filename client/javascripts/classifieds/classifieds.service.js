@@ -18,7 +18,7 @@
       }
 
       function addClass(post) {
-        return $http.post('/api/classifieds', classified).then((classified) => {
+        return $http.post('/api/classifieds', post).then((classified) => {
           return classified.data
         })
       }
@@ -26,6 +26,7 @@
 
       function editClass(id, classified) {
         return $http.patch(`/api/classifieds/${id}`, classified).then((classified) => {
+          console.log('3', classified)
           return classified.data
         })
       }
