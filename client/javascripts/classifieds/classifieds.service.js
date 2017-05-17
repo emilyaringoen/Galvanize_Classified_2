@@ -17,20 +17,20 @@
         })
       }
 
-      function addPost(post) {
+      function addClass(post) {
         return $http.post('/api/classifieds', classified).then((classified) => {
           return classified.data
         })
       }
 
 
-      function editPost(id, classified) {
+      function editClass(id, classified) {
         return $http.patch(`/api/classifieds/${id}`, classified).then((classified) => {
           return classified.data
         })
       }
 
-      function deletePost(id) {
+      function deleteClass(id) {
         return $http.delete(`/api/classifieds/${id}`).then((classified) => {
           return classified.data
         })

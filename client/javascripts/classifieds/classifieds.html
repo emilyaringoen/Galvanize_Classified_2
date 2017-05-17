@@ -1,0 +1,58 @@
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+      </button>
+            <a class="navbar-brand">Galavanize Classified</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        </div>
+    </div>
+</nav>
+<main class="container">
+<div class="row" ng-repeat="post in $ctrl.classifieds">
+  <div class="col-md-12">
+
+      <div class="well">
+          <div class="media-left">
+              <img class="media-object" ng-src="{{post.item_image}}" width='200px'>
+          </div>
+          <div class="media-body">
+              <h4 class="media-heading">{{ post.title }}</h4>
+              <div>{{ post.description}}</div>
+              <p>${{ post.price }}</p>
+              <p> {{ post.created_at | date:'short'}} </p>
+              <a ng-click="$ctrl.editClass">Edit Post</a> | <a ng-click="$ctrl.deletePost($ctrl.post)">Delete Post</a>
+          </div>
+      </div>
+  </div>
+</div>
+<div class="row">
+    <div class="col-md-8">
+        <form ng-submit="$ctrl.createClass()" name="$ctrl.newpost" novalidate>
+            <div class="form-group" ng-class="{'has-error' : $ctrl.newpost.title.$invalid}">
+                <label for="title">Title</label>
+                <input name="title" ng-model="$ctrl.post.title" id="title" class="form-control" minlength="3" type="text">
+            </div>
+            <div class="form-group" ng-class="{'has-error' : $ctrl.newpost.description.$invalid}">
+                <label for="description">Description</label>
+                <textarea name="description" ng-model="$ctrl.post.description" id="body" class="form-control" minlength="3" type="text"></textarea>
+            </div>
+            <div class="form-group" ng-class="{'has-error' : $ctrl.newpost.price.$invalid}">
+                <label for="price">Price</label>
+                <input name="price" ng-model="$ctrl.post.price" id="price" class="form-control" minlength="1" type="text">
+            </div>
+            <div class="form-group" ng-class="{'has-error' : $ctrl.newpost.item_image.$invalid}">
+                <label for="item_image">Image URL</label>
+                <input name="item_image" ng-model="$ctrl.post.image_url" id="item_image" minlength="10" class="form-control" type="url">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary" ng-if="$ctrl.newpost.$valid">Create Post</button>
+            </div>
+        </form>
+
+    </div>
+</div>
+</main>

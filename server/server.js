@@ -10,15 +10,13 @@ const messages = require('./routes/classifieds')
 
 app.use(logger('dev'))
 app.use(bodyParser.json())
-app.use('/javascripts', express.static(__dirname + "/../client/javascripts"))
-app.use('/stylesheets', express.static(__dirname + "/../client/stylesheets"))
-app.use('/views', express.static(__dirname + "/../client/views"))
-app.use(express.static(path.join(__dirname, + '/../node_modules')))
+app.use(express.static(path.join(__dirname, '/../client')))
+app.use(express.static(path.join(__dirname, '/../', 'node_modules')))
 
 app.use('/api/classifieds', messages)
 
 app.use('*', function(req, res, next) {
-  res.sendFile('index.html', {root: path.join(__dirname, '/../client/views')})
+  res.sendFile('index.html', {root: path.join(__dirname, '/../client')})
 })
 
 const port = process.env.PORT || 3000
