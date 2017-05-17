@@ -41,9 +41,9 @@
     }
 
     function editClass(post) {
-      console.log('1', vm.editP, post.id)
+      console.log('1 in comp', vm.editP, 'id in comp', post.id)
       classService.editClass(post.id, vm.editP).then(item => {
-        console.log('2', item)
+        console.log('2 in comp', item)
         })
         $state.reload()
     }

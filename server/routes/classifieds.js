@@ -41,21 +41,17 @@ router.post('/', (req, res, next) => {
 router.patch('/:id', (req, res, next) => {
   let id = Number.parseInt(req.params.id)
   let updated = req.body
-  console.log('here')
+  console.log('here', req.body)
   knex('classifieds')
     .where('id', id)
+    .update({title: req.body.title, description: req.body.description, price: req.body.price, item_image: req.body.item_image})
     .returning(['id', 'title', 'description', 'price', 'item_image'])
-    .then((el) => {
-      let item = el[0]
-      for (let key in item) {
-        if (updated.hasOwnProperty(key)) {
-          item[key] = updated[key]
-        }
-      }
+    .then((item) => {
+        console.log(item[0])
       delete item.created_at
       delete item.updated_at
       res.set('Content-Type', 'application/json')
-      res.send(item)
+      res.send(item[0])
     })
 })
 

@@ -26,7 +26,7 @@
 
       function editClass(id, classified) {
         return $http.patch(`/api/classifieds/${id}`, classified).then((classified) => {
-          console.log('3', classified)
+          console.log('3 in service', classified)
           return classified.data
         })
       }
